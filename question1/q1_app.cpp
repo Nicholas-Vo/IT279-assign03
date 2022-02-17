@@ -35,10 +35,8 @@ int main() {
 
     //cout << "Find 75: " << t.find(75)->element << endl;
 
-    cout << "After removing 65: " << endl;
-    t.remove(65);
+    t.remove(50);
     t.printTree();
-
 
     /*
      * test 1

@@ -184,8 +184,11 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x) {
 template<typename Comparable>
 typename BinarySearchTree<Comparable>::BinaryNode
 *BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree::BinaryNode *t) const {
-    if (t == nullptr) {
-        return nullptr;
+    if (t == nullptr) return nullptr;
+
+    if (x > t->element) {
+        t->right = remove(x, t->right);
+        return t;
     }
 
     if (x < t->element) {
@@ -193,27 +196,21 @@ typename BinarySearchTree<Comparable>::BinaryNode
         return t;
     }
 
-    if (x > t->element) {
-        t->right = remove(x, t->right);
-        return t;
-    }
-
     if (t->left == nullptr) {
-        BinaryNode* temp = t->right;
+        BinaryNode *temp = t->right;
         delete t;
         return temp;
     }
 
     if (t->right == nullptr) {
-        BinaryNode* temp = t->left;
+        BinaryNode *temp = t->left;
         delete t;
         return temp;
     }
 
-    BinaryNode* tempX = findMin(t->right);
-    t->right = remove(x, t->right);
+    BinaryNode *tempX = findMin(t->right);
+    t->right = remove(tempX->element, t->right);
     t->element = tempX->element;
-
     return t;
 }
 
