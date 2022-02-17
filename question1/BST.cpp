@@ -150,6 +150,9 @@ typename BinarySearchTree<Comparable>::BinaryNode *BinarySearchTree<Comparable>:
     return findParent(x, root);
 }
 
+/*
+ * findParent internal method
+ */
 template<typename Comparable>
 typename BinarySearchTree<Comparable>::BinaryNode
 *BinarySearchTree<Comparable>::findParent(const Comparable &x, BinarySearchTree::BinaryNode *t) const {
@@ -163,7 +166,6 @@ typename BinarySearchTree<Comparable>::BinaryNode
 
     return findParent(x, t->right);
 }
-
 
 /**
  * remove function wrapper
@@ -184,9 +186,12 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x) {
  */
 template<typename Comparable>
 void BinarySearchTree<Comparable>::remove(const Comparable &x, BinaryNode *&t) {
-    if (x == root) {
-        root == nullptr;
+    if (x < root->element) remove(x, root->left);
+    if (x < root->element) remove(x, root->right);
 
+    if (root->right == nullptr && root->left == nullptr) {
+        delete root;
+        root == nullptr;
     }
 }
 
