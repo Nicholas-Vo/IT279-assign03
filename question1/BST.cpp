@@ -172,10 +172,7 @@ typename BinarySearchTree<Comparable>::BinaryNode
  */
 template<typename Comparable>
 void BinarySearchTree<Comparable>::remove(const Comparable &x) {
-    BinaryNode theNode = find(x);
-    if (theNode == nullptr) return;
-
-    remove(x, theNode);
+    root = remove(x, root);
 }
 
 /**
@@ -185,14 +182,39 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x) {
  * Set the new root of the subtree.
  */
 template<typename Comparable>
-void BinarySearchTree<Comparable>::remove(const Comparable &x, BinaryNode *&t) {
-    if (x < root->element) remove(x, root->left);
-    if (x < root->element) remove(x, root->right);
-
-    if (root->right == nullptr && root->left == nullptr) {
-        delete root;
-        root == nullptr;
+typename BinarySearchTree<Comparable>::BinaryNode
+*BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree::BinaryNode *t) const {
+    if (t == nullptr) {
+        return nullptr;
     }
+
+    if (x < t->element) {
+        t->left = remove(x, t->left);
+        return t;
+    }
+
+    if (x > t->element) {
+        t->right = remove(x, t->right);
+        return t;
+    }
+
+    if (t->left == nullptr) {
+        BinaryNode* temp = t->right;
+        delete t;
+        return temp;
+    }
+
+    if (t->right == nullptr) {
+        BinaryNode* temp = t->left;
+        delete t;
+        return temp;
+    }
+
+    BinaryNode* tempX = findMin(t->right);
+    t->right = remove(x, t->right);
+    t->element = tempX->element;
+
+    return t;
 }
 
 /**

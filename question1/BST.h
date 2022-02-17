@@ -73,7 +73,7 @@ private:
     BinaryNode *clone(BinaryNode *t) const;
 
     // Functions that you need to complete in BST.cpp for assignment 02
-    void remove(const Comparable &x, BinaryNode *&t);
+    BinaryNode *remove(const Comparable &x, BinaryNode *t) const;
 
     BinaryNode *findMax(BinaryNode *t) const;
 
@@ -91,6 +91,7 @@ private:
     BinaryNode *find(const Comparable &x, BinaryNode *t) const;
 
     BinaryNode *findParent(const Comparable &x, BinaryNode *t) const;
+
 };
 
 #endif
