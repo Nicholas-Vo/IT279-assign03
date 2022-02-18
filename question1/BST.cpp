@@ -175,11 +175,19 @@ typename BinarySearchTree<Comparable>::BinaryNode
 template<typename Comparable>
 typename BinarySearchTree<Comparable>::BinaryNode
 *BinarySearchTree<Comparable>::findSuccessor(const Comparable &x) const {
-    if (findMin(find(x)->right) == nullptr) {
-        cout << "Couldn't find a successor." << endl;
+    if (find(x) == nullptr) {
+        cout << "Couldn't find value " << x << "." << endl;
         throw ArrayIndexOutOfBoundsException();
     }
-    return findMin(find(x)->right);
+
+    BinaryNode *theNode = find(x);
+
+    if (findMin(theNode->right) == nullptr) {
+        cout << "Couldn't find value " << theNode->right << "." << endl;
+        throw ArrayIndexOutOfBoundsException();
+    }
+
+    return findMin(theNode->right);
 }
 
 /*
@@ -188,11 +196,19 @@ typename BinarySearchTree<Comparable>::BinaryNode
 template<typename Comparable>
 typename BinarySearchTree<Comparable>::BinaryNode
 *BinarySearchTree<Comparable>::findPredecessor(const Comparable &x) const {
-    if (findMin(find(x)->right) == nullptr) {
-        cout << "Couldn't find a successor." << endl;
+    if (find(x) == nullptr) {
+        cout << "Couldn't find value " << x << "." << endl;
         throw ArrayIndexOutOfBoundsException();
     }
-    return findMax(find(x)->left);
+
+    BinaryNode *theNode = find(x);
+
+    if (findMin(theNode->right) == nullptr) {
+        cout << "Couldn't find value " << theNode->right << "." << endl;
+        throw ArrayIndexOutOfBoundsException();
+    }
+
+    return findMax(theNode->left);
 }
 
 /**
