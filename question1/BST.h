@@ -27,7 +27,7 @@ public:
 
     BinarySearchTree(const BinarySearchTree &rhs);
 
-    BinarySearchTree(BinarySearchTree &&rhs);
+    BinarySearchTree(BinarySearchTree &&rhs) noexcept;
 
     ~BinarySearchTree();
 
@@ -54,7 +54,6 @@ public:
         return *this;
     }
 
-    // Functions that you need to complete in BST.cpp for assignment 02
     void remove(const Comparable &x);
 
     BinaryNode *findMax() const;
@@ -72,12 +71,10 @@ private:
 
     BinaryNode *clone(BinaryNode *t) const;
 
-    // Functions that you need to complete in BST.cpp for assignment 02
     BinaryNode *remove(const Comparable &x, BinaryNode *t) const;
 
     BinaryNode *findMax(BinaryNode *t) const;
 
-    // Functions that you need to add to BST.cpp for assignment 02
 public:
     BinaryNode *find(const Comparable &x) const;
 

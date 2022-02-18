@@ -5,9 +5,7 @@
 
 using namespace std;
 
-// // Test program
-int main()
-{
+int main() {
     BinarySearchTree<int> t;
     t.insert(50);
     t.insert(30);

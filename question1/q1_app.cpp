@@ -29,14 +29,12 @@ int main() {
     /*
      * test 0
      */
-    cout << "Test0: " << endl;
-    cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
-    t.printTree();
-
-    //cout << "Find 75: " << t.find(75)->element << endl;
-
-    t.remove(50);
-    t.printTree();
+//    cout << "Test0: " << endl;
+//    cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
+//    t.printTree();
+//
+//    //cout << "Find 75: " << t.find(75)->element << endl;
+//    t.printTree();
 
     /*
      * test 1
@@ -68,20 +66,21 @@ int main() {
     /*
      * test 3
      */
-//        cout << "Test3: " << endl;
-//        t.remove(30);
-//        cout << "The updated tree is (preorder traversal):" << endl;
-//        t.printTree();
-//
-//        cout << "The successor of " << 35 << " is " << t.findSuccessor(35)->element << endl;
-//        cout << "The predecessor of " << 35 << " is " << t.findPredecessor(35)->element << endl;
-//        cout << "The parent of " << 35 << " is " << t.findParent(35)->element << endl;
-//        cout << "The successor of " << 40 << " is " << t.findSuccessor(40)->element << endl;
-//        cout << "The predecessor of " << 40 << " is " << t.findPredecessor(40)->element << endl;
-// cout << "The parent of " << 40 << " is " << t.findParent(40)->element << endl;
-//
-//        cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
-//        cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
+    cout << "Test3: " << endl;
+    t.printTree();
+    t.remove(30);
+    cout << "The updated tree is (preorder traversal):" << endl;
+    t.printTree();
+
+    cout << "The successor of " << 35 << " is " << t.findSuccessor(35)->element << endl;
+    cout << "The predecessor of " << 35 << " is " << t.findPredecessor(35)->element << endl;
+    cout << "The parent of " << 35 << " is " << t.findParent(35)->element << endl;
+    cout << "The successor of " << 40 << " is " << t.findSuccessor(40)->element << endl;
+    cout << "The predecessor of " << 40 << " is " << t.findPredecessor(40)->element << endl;
+    cout << "The parent of " << 40 << " is " << t.findParent(40)->element << endl;
+
+    cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
+    cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
 
     /*
      * test 4
