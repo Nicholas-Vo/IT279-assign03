@@ -225,13 +225,19 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x) {
  * Set the new root of the subtree.
  */
 template<typename Comparable>
-void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree::BinaryNode *t) const {
+void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree::BinaryNode *&t) const {
     if (t == nullptr) {
         return; // Didn't find item, return out
     }
 
-    if (x < t->element) remove(x, t->left);
-    if (x > t->element) remove(x, t->right);
+    if (x < t->element) {
+        remove(x, t->left);
+        return;
+    }
+    if (x > t->element) {
+        remove(x, t->right);
+        return;
+    }
 
     /*
      * Two children case
@@ -239,10 +245,16 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree:
     if (t->left != nullptr && t->right != nullptr) {
         t->element = findMin(t->right)->element;
         remove(t->element, t->right);
+        return;
     }
 
     BinaryNode *temp = t;
+
+    /*
+     * Ternary to determine right or left
+     */
     t = t->left == nullptr ? t->right : t->left;
+    delete temp;
 }
 
 /**
