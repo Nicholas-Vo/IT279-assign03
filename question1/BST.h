@@ -71,7 +71,7 @@ private:
 
     BinaryNode *clone(BinaryNode *t) const;
 
-    BinaryNode *remove(const Comparable &x, BinaryNode *t) const;
+    void remove(const Comparable &x, BinaryNode *t) const;
 
     BinaryNode *findMax(BinaryNode *t) const;
 

@@ -1,5 +1,4 @@
 #include "BST.h"
-#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -216,7 +215,7 @@ typename BinarySearchTree<Comparable>::BinaryNode
  */
 template<typename Comparable>
 void BinarySearchTree<Comparable>::remove(const Comparable &x) {
-    root = remove(x, root); // call remove() internal function
+    remove(x, root); // call remove() internal function
 }
 
 /**
@@ -226,36 +225,24 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x) {
  * Set the new root of the subtree.
  */
 template<typename Comparable>
-typename BinarySearchTree<Comparable>::BinaryNode
-*BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree::BinaryNode *t) const {
-    if (t == nullptr) return nullptr;
-
-    if (x > t->element) {
-        t->right = remove(x, t->right);
-        return t;
+void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree::BinaryNode *t) const {
+    if (t == nullptr) {
+        return; // Didn't find item, return out
     }
 
-    if (x < t->element) {
-        t->left = remove(x, t->left);
-        return t;
+    if (x < t->element) remove(x, t->left);
+    if (x > t->element) remove(x, t->right);
+
+    /*
+     * Two children case
+     */
+    if (t->left != nullptr && t->right != nullptr) {
+        t->element = findMin(t->right)->element;
+        remove(t->element, t->right);
     }
 
-    if (t->left == nullptr) {
-        BinaryNode *temp = t->right;
-        delete t;
-        return temp;
-    }
-
-    if (t->right == nullptr) {
-        BinaryNode *temp = t->left;
-        delete t;
-        return temp;
-    }
-
-    BinaryNode *tempX = findMin(t->right);
-    t->element = tempX->element;
-    t->right = remove(tempX->element, t->right);
-    return t;
+    BinaryNode *temp = t;
+    t = t->left == nullptr ? t->right : t->left;
 }
 
 /**

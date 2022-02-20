@@ -26,6 +26,12 @@ int main() {
     t.insert(75);
     t.insert(85);
 
+    t.printTree();
+
+    t.remove(65);
+
+    t.printTree();
+
     /*
      * test 0
      */
