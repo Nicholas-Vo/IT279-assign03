@@ -3,4 +3,5 @@ project(assign3)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(assign3 question1/q1_app.cpp question1/BST.cpp)
+#add_executable(assign3 a03_q01/q1_app.cpp a03_q01/BST.cpp)
+add_executable(assign3 a03_q02/q2_app.cpp a03_q02/BST.cpp)
