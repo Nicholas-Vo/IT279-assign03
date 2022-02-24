@@ -8,6 +8,7 @@ using namespace std;
 int main() {
     cout << "Question 01: " << endl;
     BinarySearchTree<int> t;
+
     t.insert(50);
     t.insert(30);
     t.insert(20);
@@ -26,80 +27,56 @@ int main() {
     t.insert(75);
     t.insert(85);
 
-    t.printTree();
-
-    t.remove(65);
-
-    t.printTree();
-
-    /*
-     * test 0
-     */
+    // Uncomment the code for testing
 //    cout << "Test0: " << endl;
 //    cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
 //    t.printTree();
-//
-//    //cout << "Find 75: " << t.find(75)->element << endl;
+
+    // Uncomment the code for testing
+//    cout << "Test1: " << endl;
+//    cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
 //    t.printTree();
+//    cout << "The parent of " << 50 << " is " << t.findParent(50)->element << endl;
 
-    /*
-     * test 1
-     */
-//        cout << "Test1: " << endl;
-//        cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
-//        t.printTree();
-//        cout << "The parent of " << 50 << " is " << t.findParent(50)->element << endl;
-
-    /*
-     * test 2
-     */
-//        cout << "Test2: " << endl;
-//        cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
-//        t.printTree();
-//        cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
-//        cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
+    // Uncomment the code for testing
+//     cout << "Test2: " << endl;
+//     cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
+//     t.printTree();
+//     cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
+//     cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
 //
-//        cout << "The successor of " << 30 << " is " << t.findSuccessor(30)->element << endl;
-//        cout << "The predecessor of " << 30 << " is " << t.findPredecessor(30)->element << endl;
-//        cout << "The parent of " << 30 << " is " << t.findParent(30)->element << endl;
-//        cout << "The successor of " << 70 << " is " << t.findSuccessor(70)->element << endl;
-//        cout << "The predecessor of " << 70 << " is " << t.findPredecessor(70)->element << endl;
-//        cout << "The parent of " << 70 << " is " << t.findParent(70)->element << endl;
-//        cout << "The successor of " << 85 << " is " << t.findSuccessor(85)->element << endl;
-//        cout << "The predecessor of " << 85 << " is " << t.findPredecessor(85)->element << endl;
-//        cout << "The parent of " << 85 << " is " << t.findParent(85)->element << endl;
+//     cout << "The successor of " << 30 << " is " << t.findSuccessor(30)->element << endl;
+//     cout << "The predecessor of " << 30 << " is " << t.findPredecessor(30)->element << endl;
+//     cout << "The parent of " << 30 << " is " << t.findParent(30)->element << endl;
+//     cout << "The successor of " << 70 << " is " << t.findSuccessor(70)->element << endl;
+//     cout << "The predecessor of " << 70 << " is " << t.findPredecessor(70)->element << endl;
+//     cout << "The parent of " << 70 << " is " << t.findParent(70)->element << endl;
+//     cout << "The successor of " << 85 << " is " << t.findSuccessor(85)->element << endl;
+//     cout << "The predecessor of " << 85 << " is " << t.findPredecessor(85)->element << endl;
+//     cout << "The parent of " << 85 << " is " << t.findParent(85)->element << endl;
 
-    /*
-     * test 3
-     */
-//    cout << "Test3: " << endl;
-//    t.printTree();
-//    t.remove(30);
-//    cout << "The updated tree is (preorder traversal):" << endl;
-//    t.printTree();
-//
-//    // predecessor
-//    // successor = the minimum value in its right subtr= the maximum value in its left subtree
-//
-//    cout << "The successor of " << 35 << " is " << t.findSuccessor(35)->element << endl;
-//    cout << "The predecessor of " << 35 << " is " << t.findPredecessor(35)->element << endl;
-//    cout << "The parent of " << 35 << " is " << t.findParent(35)->element << endl;
-//    cout << "The successor of " << 40 << " is " << t.findSuccessor(40)->element << endl;
-//    cout << "The predecessor of " << 40 << " is " << t.findPredecessor(40)->element << endl;
-//    cout << "The parent of " << 40 << " is " << t.findParent(40)->element << endl;
-//
-//    cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
-//    cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
+    // Uncomment the code for testing
+     cout << "Test3: " << endl;
+     t.remove(30);
+     cout << "The updated tree is (preorder traversal):" << endl;
+     t.printTree();
 
-    /*
-     * test 4
-     */
-//        t.remove(10);
-//        t.remove(85);
-//        cout << "The updated tree is (preorder traversal):" << endl;
-//        t.printTree();
-//        cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
-//        cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
+     cout << "The successor of " << 35 << " is " << t.findSuccessor(35)->element << endl;
+     cout << "The predecessor of " << 35 << " is " << t.findPredecessor(35)->element << endl;
+     cout << "The parent of " << 35 << " is " << t.findParent(35)->element << endl;
+     cout << "The successor of " << 40 << " is " << t.findSuccessor(40)->element << endl;
+     cout << "The predecessor of " << 40 << " is " << t.findPredecessor(40)->element << endl;
+     cout << "The parent of " << 40 << " is " << t.findParent(40)->element << endl;
 
+     cout << "The max value of the BST is: " << t.findMax()->element << endl;
+     cout << "The min value of the BST is: " << t.findMin()->element << endl;
+
+    // Uncomment the code for testing
+//     t.remove(10);
+//     t.remove(85);
+//     cout << "The updated tree is (preorder traversal):" << endl;
+//     t.printTree();
+//     cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
+//     cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
     return 0;
 }
