@@ -38,6 +38,7 @@ int main() {
     t.insert(90);
     t.remove(30);
     t.remove(70);
+    t.printTree();
     cout << "The updated binary search tree (BST) is (preorder traversal):" << endl;
     t.printTree();
     cout << endl;
@@ -48,6 +49,5 @@ int main() {
     t.remove(60);
     cout << "The updated binary search tree (BST) is (preorder traversal):" << endl;
     t.printTree();
-
     return 0;
 }

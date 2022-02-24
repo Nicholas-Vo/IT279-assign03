@@ -218,6 +218,11 @@ typename BinarySearchTree<Comparable>::BinaryNode
  */
 template<typename Comparable>
 void BinarySearchTree<Comparable>::remove(const Comparable &x) {
+    if (find(x) == nullptr) {
+        cout << "nullptr remove" << endl;
+        return;
+    }
+
     remove(x, root); // call remove() internal function
 }
 
@@ -231,7 +236,7 @@ of the right subtree” and “Remove the maximum node of the left subtree” re
 template<typename Comparable>
 void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree::BinaryNode *&t) const {
     if (t == nullptr) {
-        return; // Didn't find item, return out
+        return;
     }
 
     if (x < t->element) {
@@ -246,12 +251,31 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree:
 
     /*
      * Two children case
+     * minimum node of the right subtree (remainder == 1)
+     * maximum node of the left subtree (remainder == 0)
      */
-    if (t->left != nullptr && t->right != nullptr) {
-        BinaryNode* theNode = rand() % 2 ? t->right : t->left;
+//    if (t->left != nullptr && t->right != nullptr) {
+//        int random = rand() % 2; // Random 0 or 1
+//        cout << "Testy boy: " << random << endl;
+//
+//        BinaryNode *theNode = random ? t->right : t->left; // 40
+//        cout << "theNode: " << theNode->element << endl;
+//        int element = random ? findMin(theNode)->element : findMax(theNode)->element; // 35
+//
+//        remove(element, theNode);
+//        return;
+//    }
 
-        t->element = findMin(t->right)->element;
-        remove(t->element, theNode);
+    if (t->left != nullptr && t->right != nullptr) {
+        if (rand() % 2) {
+            remove(findMin(t->right)->element, t->right);
+            cout << "Remove the minimum node"
+                    " of the right subtree" << endl;
+        } else {
+            remove(findMax(t->left)->element, t->left);
+            cout << "Remove the maximum node "
+                    " of the left subtree" << endl;
+        }
         return;
     }
 
