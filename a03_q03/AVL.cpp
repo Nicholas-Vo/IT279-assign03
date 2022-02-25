@@ -103,8 +103,10 @@ int AvlTree<Comparable>::max(int lhs, int rhs) const {
 // Get Balance factor of node N
 template<typename Comparable>
 int AvlTree<Comparable>::getBalance(AvlNode *N) {
-    if (N == NULL)
+    if (N == NULL) {
         return 0;
+    }
+
     return height(N->left) - height(N->right);
 }
 
@@ -116,12 +118,13 @@ void AvlTree<Comparable>::insert(const Comparable &x) {
 template<typename Comparable>
 void AvlTree<Comparable>::insert(const Comparable &x, AvlNode *&t) {
     if (t == nullptr) {
-        t = new AvlNode(x, nullptr, nullptr, 0);
-    } else if (x < t->element) {
+        t = new AvlNode(x, nullptr, nullptr);
+    }
+
+    if (x < t->element)
         insert(x, t->left);
-    } else if (x > t->element) {
+    if (t->element < x)
         insert(x, t->right);
-    } else;
 
     balance(t);
 }
@@ -134,48 +137,47 @@ void AvlTree<Comparable>::balance(AvlTree::AvlNode *&t) {
 
     if (height(t->left) - height(t->right) > ALLOWED_IMBALANCE) {
         if (height(t->left->left) >= height(t->left->right)) {
-            cout << "Element t: " << t->element << endl;
-            cout << "And its left: " << t->left->element << endl;
-            cout << "And its right: " << t->right->element << endl;
-            rightRotate(t);
+            leftRotate(t);
         } else {
             rightRotate(t->left);
             leftRotate(t);
         }
     } else if (height(t->right) - height(t->left) > ALLOWED_IMBALANCE) {
         if (height(t->right->right) >= height(t->right->left)) {
-            leftRotate(t);
+            rightRotate(t);
         } else {
             leftRotate(t->right);
             rightRotate(t);
         }
     }
 
-    t->height = max(height(t->left), height(t->right) + 1);
+    t->height = max(height(t->left), height(t->right)) + 1;
 }
 
 template<typename Comparable>
 void AvlTree<Comparable>::leftRotate(AvlTree::AvlNode *&k2) {
-    AvlNode *k1 = k2->left;
+    AvlNode *temp = k2->left;
 
-    k2->left = k1->right;
-    k1->right = k2;
-    k2->height = max(height(k2->left), height(k2->right) + 1);
-    k1->height = max(height(k1->left), k2->height) + 1;
+    k2->left = temp->right;
+    temp->right = k2;
 
-    k2 = k1;
+    k2->height = max(height(k2->left), height(k2->right)) + 1;
+    temp->height = max(height(temp->left), k2->height) + 1;
+
+    k2 = temp;
 }
 
 template<typename Comparable>
-void AvlTree<Comparable>::rightRotate(AvlTree::AvlNode *&t) {
-    AvlNode *k1 = t->right;
+void AvlTree<Comparable>::rightRotate(AvlTree::AvlNode *&k1) {
+    AvlNode *temp = k1->right;
 
-    t->right = k1->left;
-    k1->left = t;
-    t->height = max(height(t->right), height(t->left) + 1);
-    t->height = max(height(k1->right), t->height) + 1;
+    k1->right = temp->left;
+    temp->left = k1;
 
-    t = k1;
+    k1->height = max(height(k1->left), height(k1->right)) + 1;
+    temp->height = max(height(temp->right), k1->height) + 1;
+
+    k1 = temp;
 }
 
 template<typename Comparable>
@@ -195,12 +197,7 @@ void AvlTree<Comparable>::remove(const Comparable &x, AvlTree::AvlNode *&t) {
     } else if (x > t->element) {
         remove(x, t->right);
         return;
-    }
-
-        /*
-         * Two children case
-         */
-    else if (t->left != nullptr && t->right != nullptr) {
+    } else if (t->left != nullptr && t->right != nullptr) {
         t->element = findMin(t->right)->element;
         remove(t->element, t->right);
         return;
