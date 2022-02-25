@@ -1,5 +1,4 @@
 #include "AVL.h"
-#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -135,7 +134,7 @@ void AvlTree<Comparable>::balance(AvlTree::AvlNode *&t) {
         return;
     }
 
-    if (height(t->left) - height(t->right) > ALLOWED_IMBALANCE) {
+    if (getBalance(t) > ALLOWED_IMBALANCE) {
         if (height(t->left->left) >= height(t->left->right)) {
             leftRotate(t);
         } else {
@@ -241,7 +240,6 @@ typename AvlTree<Comparable>::AvlNode *AvlTree<Comparable>::findMax(AvlTree::Avl
     while (t->right != nullptr) {
         t = t->right;
     }
-
     return t;
 }
 

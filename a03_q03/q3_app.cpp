@@ -64,25 +64,24 @@ int main() {
     /*
      * Test 2
      */
-
-     cout << "Test2: " << endl;
-
-     for (int num : {60, 50, 55, 58, 65, 75, 80, 85, 62}) {
-         t.insert(num);
-     }
-
-     cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
-     t.printTree();
-     cout << endl;
-
-     t.remove(80);
-     t.remove(85);
-
-     cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
-     t.printTree();
-     cout << endl;
-
-     cout << "The max value of the AVL Tree is: " << t.findMax()->element << endl;
-     cout << "The min value of the AVL Tree is: " << t.findMin()->element << endl;
+//     cout << "Test2: " << endl;
+//
+//     for (int num : {60, 50, 55, 58, 65, 75, 80, 85, 62}) {
+//         t.insert(num);
+//     }
+//
+//     cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
+//     t.printTree();
+//     cout << endl;
+//
+//     t.remove(80);
+//     t.remove(85);
+//
+//     cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
+//     t.printTree();
+//     cout << endl;
+//
+//     cout << "The max value of the AVL Tree is: " << t.findMax()->element << endl;
+//     cout << "The min value of the AVL Tree is: " << t.findMin()->element << endl;
     return 0;
 }
