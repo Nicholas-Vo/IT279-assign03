@@ -23,10 +23,10 @@ int main() {
     t.insert(5);
     t.insert(45);
     t.insert(48);
-
-    cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
+//
+//    cout << "The built binary search tree (BST) is (preorder traversal):" << endl;
     t.printTree();
-    cout << endl;
+//    cout << endl;
 
 //    t.remove(40);
 //    cout << "The built binary search tree (BST) is (preorder traversal):" << endl;

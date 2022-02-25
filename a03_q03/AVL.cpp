@@ -110,17 +110,20 @@ int AvlTree<Comparable>::getBalance(AvlNode *N) {
 
 template<typename Comparable>
 void AvlTree<Comparable>::insert(const Comparable &x) {
-    insert(std::move(x), root);
+    insert(x, root);
 }
 
 template<typename Comparable>
 void AvlTree<Comparable>::insert(const Comparable &x, AvlNode *&t) {
     if (t == nullptr) {
-        t == new AvlNode(x, nullptr, nullptr, 0);
+        t = new AvlNode(x, nullptr, nullptr, 0);
+        cout << "Created new AvlNode with a value of " << x << endl;
     } else if (x < t->element) {
         insert(x, t->left);
+        cout << "Inserted " << x << " to the left..." << endl;
     } else if (x > t->element) {
         insert(x, t->right);
+        cout << "Inserted " << x << " to the right..." << endl;
     } else;
 
     balance(t);
@@ -128,35 +131,51 @@ void AvlTree<Comparable>::insert(const Comparable &x, AvlNode *&t) {
 
 template<typename Comparable>
 void AvlTree<Comparable>::balance(AvlTree::AvlNode *&t) {
-    if (height(t->left) - height(t->right) == 2) {
-        if (x < t->left->element) {
+    if (t == nullptr) {
+        return;
+    }
 
+    if (height(t->left) - height(t->right) == 2) {
+        if (t->element < t->left->element) {
+            rightRotate(t);
+        } else {
+            rightRotate(t->left);
+            leftRotate(t);
+        }
+    } else if (height(t->right) - height(t->left) == 2) {
+        if (t->element > t->right->element) {
+            leftRotate(t);
+        } else {
+            leftRotate(t->right);
+            rightRotate(t);
         }
     }
+
+    t->height = max(height(t->left), height(t->right) + 1);
+}
+
+template<typename Comparable>
+void AvlTree<Comparable>::leftRotate(AvlTree::AvlNode *&k2) {
+    AvlNode *k1 = k2->left;
+
+    k2->left = k1->right;
+    k1->right = k2;
+    k2->height = max(height(k2->left), height(k2->right) + 1);
+    k1->height = max(height(k1->left), k2->height) + 1;
+
+    k2 = k1;
 }
 
 template<typename Comparable>
 void AvlTree<Comparable>::rightRotate(AvlTree::AvlNode *&t) {
-    AvlNode *temp = t->left;
+    AvlNode *k1 = t->right;
 
-    t->left = temp->right;
-    temp->right = t;
-    t->height = max(height(t->left), height(t->right) + 1);
-    t->height = max(height(temp->left), t->height) + 1;
+    t->right = k1->left;
+    k1->left = t;
+    t->height = max(height(t->right), height(t->left) + 1);
+    t->height = max(height(k1->right), t->height) + 1;
 
-    t = temp;
-}
-
-template<typename Comparable>
-void AvlTree<Comparable>::leftRotate(AvlTree::AvlNode *&t) {
-    AvlNode *temp = t->right;
-
-    t->right = temp->left;
-    temp->left = t;
-    t->height = max(height(t->left), height(t->right) + 1);
-    t->height = max(height(temp->right), t->height) + 1;
-
-    t = temp;
+    t = k1;
 }
 
 
