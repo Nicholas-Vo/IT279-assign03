@@ -117,13 +117,10 @@ template<typename Comparable>
 void AvlTree<Comparable>::insert(const Comparable &x, AvlNode *&t) {
     if (t == nullptr) {
         t = new AvlNode(x, nullptr, nullptr, 0);
-        cout << "Created new AvlNode with a value of " << x << endl;
     } else if (x < t->element) {
         insert(x, t->left);
-        cout << "Inserted " << x << " to the left..." << endl;
     } else if (x > t->element) {
         insert(x, t->right);
-        cout << "Inserted " << x << " to the right..." << endl;
     } else;
 
     balance(t);
@@ -135,15 +132,18 @@ void AvlTree<Comparable>::balance(AvlTree::AvlNode *&t) {
         return;
     }
 
-    if (height(t->left) - height(t->right) == 2) {
-        if (t->element < t->left->element) {
+    if (height(t->left) - height(t->right) > ALLOWED_IMBALANCE) {
+        if (height(t->left->left) >= height(t->left->right)) {
+            cout << "Element t: " << t->element << endl;
+            cout << "And its left: " << t->left->element << endl;
+            cout << "And its right: " << t->right->element << endl;
             rightRotate(t);
         } else {
             rightRotate(t->left);
             leftRotate(t);
         }
-    } else if (height(t->right) - height(t->left) == 2) {
-        if (t->element > t->right->element) {
+    } else if (height(t->right) - height(t->left) > ALLOWED_IMBALANCE) {
+        if (height(t->right->right) >= height(t->right->left)) {
             leftRotate(t);
         } else {
             leftRotate(t->right);
@@ -178,19 +178,75 @@ void AvlTree<Comparable>::rightRotate(AvlTree::AvlNode *&t) {
     t = k1;
 }
 
+template<typename Comparable>
+void AvlTree<Comparable>::remove(const Comparable &x) {
+    remove(x, root);
+}
 
-// a)	(10 pts) Complete findMax and findMin methods (both public and private). 
-// b)	(15 pts) Complete rightRotate method
-// c)	(15 pts) Complete leftRotate method
-// d)	(40 pts) Complete balance method, must have the function of outputting each of the four cases to handle unbalance and the node that is used as root to rotate. For example:
+template<typename Comparable>
+void AvlTree<Comparable>::remove(const Comparable &x, AvlTree::AvlNode *&t) {
+    if (t == nullptr) {
+        return; // Didn't find item, return out
+    }
 
-// left left case: rightRotate (50)
-// left left case: rightRotate (20)
-// left right case: leftRotate (40), rightRotate(50)
+    if (x < t->element) {
+        remove(x, t->left);
+        return;
+    } else if (x > t->element) {
+        remove(x, t->right);
+        return;
+    }
 
-// right left case: rightRotate (50), leftRotate(45)
+        /*
+         * Two children case
+         */
+    else if (t->left != nullptr && t->right != nullptr) {
+        t->element = findMin(t->right)->element;
+        remove(t->element, t->right);
+        return;
+    } else {
+        AvlNode *temp = t;
 
-// f)	(10 pts) Complete remove method
+        t = t->left == nullptr ? t->right : t->left;
+        delete temp;
+    }
+
+    balance(t);
+}
+
+template<typename Comparable>
+typename AvlTree<Comparable>::AvlNode *AvlTree<Comparable>::findMin() const {
+    return findMin(root);
+}
+
+template<typename Comparable>
+typename AvlTree<Comparable>::AvlNode *AvlTree<Comparable>::findMin(AvlTree::AvlNode *t) const {
+    if (t == nullptr) {
+        return nullptr;
+    }
+    if (t->left == nullptr) {
+        return t;
+    }
+    return findMin(t->left);
+}
+
+template<typename Comparable>
+typename AvlTree<Comparable>::AvlNode *AvlTree<Comparable>::findMax() const {
+    return findMax(root);
+}
+
+template<typename Comparable>
+typename AvlTree<Comparable>::AvlNode *AvlTree<Comparable>::findMax(AvlTree::AvlNode *t) const {
+    if (t == nullptr) {
+        return nullptr;
+    }
+
+    while (t->right != nullptr) {
+        t = t->right;
+    }
+
+    return t;
+}
 
 
 

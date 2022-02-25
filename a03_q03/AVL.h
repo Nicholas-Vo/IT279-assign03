@@ -66,6 +66,7 @@ public:
 
 private:
     AvlNode *root;
+    int ALLOWED_IMBALANCE = 1;
 
     void insert(const Comparable &x, AvlNode *&t);
 
