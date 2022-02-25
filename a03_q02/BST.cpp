@@ -251,21 +251,7 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree:
 
     /*
      * Two children case
-     * minimum node of the right subtree (remainder == 1)
-     * maximum node of the left subtree (remainder == 0)
      */
-//    if (t->left != nullptr && t->right != nullptr) {
-//        int random = rand() % 2; // Random 0 or 1
-//        cout << "Testy boy: " << random << endl;
-//
-//        BinaryNode *theNode = random ? t->right : t->left; // 40
-//        cout << "theNode: " << theNode->element << endl;
-//        int element = random ? findMin(theNode)->element : findMax(theNode)->element; // 35
-//
-//        remove(element, theNode);
-//        return;
-//    }
-
     if (t->left != nullptr && t->right != nullptr) {
         if (rand() % 2) {
             remove(findMin(t->right)->element, t->right);
@@ -273,7 +259,7 @@ void BinarySearchTree<Comparable>::remove(const Comparable &x, BinarySearchTree:
                     " of the right subtree" << endl;
         } else {
             remove(findMax(t->left)->element, t->left);
-            cout << "Remove the maximum node "
+            cout << "Remove the maximum node"
                     " of the left subtree" << endl;
         }
         return;

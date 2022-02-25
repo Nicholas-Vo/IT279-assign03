@@ -5,27 +5,27 @@
 
 using namespace std;
 
-//int main() {
-//    cout << "Question 01: " << endl;
-//    BinarySearchTree<int> t;
-//
-//    t.insert(50);
-//    t.insert(30);
-//    t.insert(20);
-//    t.insert(40);
-//    t.insert(70);
-//    t.insert(60);
-//    t.insert(80);
-//
-//    t.insert(15);
-//    t.insert(25);
-//    t.insert(35);
-//    t.insert(45);
-//
-//    t.insert(55);
-//    t.insert(65);
-//    t.insert(75);
-//    t.insert(85);
+int main() {
+    cout << "Question 01: " << endl;
+    BinarySearchTree<int> t;
+
+    t.insert(50);
+    t.insert(30);
+    t.insert(20);
+    t.insert(40);
+    t.insert(70);
+    t.insert(60);
+    t.insert(80);
+
+    t.insert(15);
+    t.insert(25);
+    t.insert(35);
+    t.insert(45);
+
+    t.insert(55);
+    t.insert(65);
+    t.insert(75);
+    t.insert(85);
 //
 //    // Uncomment the code for testing
 ////    cout << "Test0: " << endl;
@@ -72,11 +72,11 @@ using namespace std;
 //     cout << "The min value of the BST is: " << t.findMin()->element << endl;
 //
 //    // Uncomment the code for testing
-////     t.remove(10);
-////     t.remove(85);
-////     cout << "The updated tree is (preorder traversal):" << endl;
-////     t.printTree();
-////     cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
-////     cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
-//    return 0;
-//}
+     t.remove(10);
+     t.remove(85);
+     cout << "The updated tree is (preorder traversal):" << endl;
+     t.printTree();
+     cout << "The max vaule of the BST is: " << t.findMax()->element << endl;
+     cout << "The min vaule of the BST is: " << t.findMin()->element << endl;
+    return 0;
+}

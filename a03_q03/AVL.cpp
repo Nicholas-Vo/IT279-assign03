@@ -108,6 +108,58 @@ int AvlTree<Comparable>::getBalance(AvlNode *N) {
     return height(N->left) - height(N->right);
 }
 
+template<typename Comparable>
+void AvlTree<Comparable>::insert(const Comparable &x) {
+    insert(std::move(x), root);
+}
+
+template<typename Comparable>
+void AvlTree<Comparable>::insert(const Comparable &x, AvlNode *&t) {
+    if (t == nullptr) {
+        t == new AvlNode(x, nullptr, nullptr, 0);
+    } else if (x < t->element) {
+        insert(x, t->left);
+    } else if (x > t->element) {
+        insert(x, t->right);
+    } else;
+
+    balance(t);
+}
+
+template<typename Comparable>
+void AvlTree<Comparable>::balance(AvlTree::AvlNode *&t) {
+    if (height(t->left) - height(t->right) == 2) {
+        if (x < t->left->element) {
+
+        }
+    }
+}
+
+template<typename Comparable>
+void AvlTree<Comparable>::rightRotate(AvlTree::AvlNode *&t) {
+    AvlNode *temp = t->left;
+
+    t->left = temp->right;
+    temp->right = t;
+    t->height = max(height(t->left), height(t->right) + 1);
+    t->height = max(height(temp->left), t->height) + 1;
+
+    t = temp;
+}
+
+template<typename Comparable>
+void AvlTree<Comparable>::leftRotate(AvlTree::AvlNode *&t) {
+    AvlNode *temp = t->right;
+
+    t->right = temp->left;
+    temp->left = t;
+    t->height = max(height(t->left), height(t->right) + 1);
+    t->height = max(height(temp->right), t->height) + 1;
+
+    t = temp;
+}
+
+
 // a)	(10 pts) Complete findMax and findMin methods (both public and private). 
 // b)	(15 pts) Complete rightRotate method
 // c)	(15 pts) Complete leftRotate method
@@ -119,7 +171,6 @@ int AvlTree<Comparable>::getBalance(AvlNode *N) {
 
 // right left case: rightRotate (50), leftRotate(45)
 
-// e)	(10 pts) Complete insert method 
 // f)	(10 pts) Complete remove method
 
 
